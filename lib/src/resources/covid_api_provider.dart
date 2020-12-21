@@ -9,11 +9,11 @@ class CovidApiProvider {
   static const _API_ROOT = 'https://covid19-api.org/api';
   final Client client = Client();
 
-  Future<CountriesItemModel> fetchCountry() async {
+  Future<List<CountryItemModel>> fetchCountry() async {
     final response = await client.get('$_API_ROOT/status');
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON
-      return CountriesItemModel.fromJson(json.decode(response.body));
+      return CountriesItemModel.fromJson(json.decode(response.body)).countries;
     } else {
       // If that call was not successful, throw an error.
       throw Exception('Failed to load post');

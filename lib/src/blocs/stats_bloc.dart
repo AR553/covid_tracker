@@ -3,14 +3,14 @@ import 'package:zero_to_hero/src/resources/repository.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:zero_to_hero/src/models/date_item_model.dart';
 
-class CovidBloc {
+class StatsBloc {
   final _repository = Repository();
   final _totalFetcher = BehaviorSubject<DateItemModel>();
   final _todayFetcher = BehaviorSubject<DateItemModel>();
   final _yesterdayFetcher = BehaviorSubject<DateItemModel>();
   final _timelineFetcher = BehaviorSubject<List<TimelineItemModel>>();
 
-  CovidBloc() {
+  StatsBloc() {
     // fetch once
     _fetchTotal();
     _fetchToday();

@@ -8,7 +8,8 @@ import 'covid_api_provider.dart';
 class Repository {
   final covidApiProvider = CovidApiProvider();
 
-  Future<CountriesItemModel> fetchCountry() => covidApiProvider.fetchCountry();
+  Future<List<CountryItemModel>> fetchCountry() =>
+      covidApiProvider.fetchCountry();
 
   Future<DateItemModel> fetchTotal() => covidApiProvider.fetchTotal();
 
