@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:zero_to_hero/src/blocs/covid_bloc.dart';
+import 'package:zero_to_hero/src/blocs/stats_bloc.dart';
 import 'package:zero_to_hero/src/models/date_item_model.dart';
 import 'package:zero_to_hero/src/ui/clear_app_bar.dart';
 import 'package:zero_to_hero/src/ui/dimens.dart';
@@ -12,6 +12,9 @@ import 'package:zero_to_hero/src/ui/strings.dart';
 import 'plain_scroll_behavior.dart';
 
 class GlobalStatsPage extends StatefulWidget {
+  GlobalStatsPage({this.statsBloc});
+  final StatsBloc statsBloc;
+
   @override
   _StatsPageState createState() => _StatsPageState();
 }
@@ -31,13 +34,6 @@ class _StatsPageState extends State<GlobalStatsPage> {
     ),
   ];
   final EdgeInsets _paddingTbv = EdgeInsets.all(Dimens.INSET_M);
-
-  CovidBloc covidBloc;
-  @override
-  void initState() {
-    covidBloc = CovidBloc();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +93,7 @@ class _StatsPageState extends State<GlobalStatsPage> {
                     Dimens.INSET_M,
                   ),
                   child: StatChart(
-                    stream: covidBloc.timeline,
+                    stream: widget.statsBloc.timeline,
                   ),
                 ),
               ),
@@ -110,9 +106,9 @@ class _StatsPageState extends State<GlobalStatsPage> {
 
   List<Widget> _tabContentList() {
     final streams = [
-      covidBloc.total,
-      covidBloc.today,
-      covidBloc.yesterday,
+      widget.statsBloc.total,
+      widget.statsBloc.today,
+      widget.statsBloc.yesterday,
     ];
     return streams
         .map((item) => _tabContentView(

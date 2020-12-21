@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zero_to_hero/src/blocs/search_input_bloc.dart';
+import 'package:zero_to_hero/src/blocs/country_bloc.dart';
 
 import '../dimens.dart';
 import '../my_colors.dart';
@@ -7,8 +7,8 @@ import '../strings.dart';
 
 // ignore: must_be_immutable
 class SearchBar extends StatefulWidget {
-  SearchBar({@required this.searchInputBloc});
-  final SearchInputBloc searchInputBloc;
+  SearchBar({@required this.countryBloc});
+  final CountryBloc countryBloc;
   @override
   _SearchBarState createState() => _SearchBarState();
 }
@@ -63,8 +63,10 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   void _onInputChanged(String input) {
-    _active = input.isNotEmpty;
-    widget.searchInputBloc.updateSearchInput(input);
+    setState(() {
+      _active = input.isNotEmpty;
+      widget.countryBloc.updateSearchInput(input);
+    });
   }
 
   Widget _getSearchIcon(BuildContext context) {
@@ -76,10 +78,10 @@ class _SearchBarState extends State<SearchBar> {
           color: color,
         ),
         onPressed: () {
-          _txtController.clear();
           // make active false so icon changes when text is cleared
+          _txtController.clear();
           _active = false;
-          widget.searchInputBloc.updateSearchInput("");
+          widget.countryBloc.updateSearchInput("");
         },
       );
     }
