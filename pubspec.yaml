@@ -1,0 +1,32 @@
+name: zero_to_hero
+description: A new Flutter project.
+
+
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.0
+  rxdart: ^0.24.1
+  http: ^0.12.2
+  fl_chart: ^0.12.1
+  intl: ^0.16.1
+  provider: ^4.3.2+3
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+  uses-material-design: true
